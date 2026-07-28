@@ -12,7 +12,7 @@ jobs:
 
     container:
       image: archlinux:base-devel
-
+      options: --privileged
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
