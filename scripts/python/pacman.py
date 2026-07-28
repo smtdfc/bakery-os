@@ -52,10 +52,10 @@ def create_build_time_pacman_conf() -> None:
             if config.has_section("custom"):
                 del config["custom"]
 
-        if package_cache_db.exists():
-            config["bakeryos-cache"] = {
-                "Server": f"file://{package_cache_db}"
-            }
+        # if package_cache_db.exists():
+        #     config["bakeryos-cache"] = {
+        #         "Server": f"file://{package_cache_db}"
+        #     }
 
         config["bakeryos"]["Server"] = bakeryos_repository
 

@@ -8,6 +8,22 @@ import configparser
 import os
 
 
+def create_user_filesystem() -> None:
+    user_dirs = [
+        "Desktop",
+        "Documents",
+        "Downloads",
+        "Templates",
+        "Public",
+        "Music",
+        "Pictures",
+        "Videos"
+    ]
+
+    for i in user_dirs:
+        os.makedirs(user_skel / i, exist_ok=True)
+
+
 def update_system() -> None:
     print("Updating .... ")
     run_command_and_stream(["sudo", "pacman", "-Syu"])
@@ -23,12 +39,14 @@ def ensure_files() -> None:
     os.makedirs(local_repo_dir, exist_ok=True)
     os.makedirs(gnome_extension_dir, exist_ok=True)
     os.makedirs(package_cache_dir, exist_ok=True)
+    os.makedirs(build_log_dir, exist_ok=True)
 
 
 def prepare() -> None:
     update_system()
     ensure_files()
     config_pacman()
+    create_user_filesystem()
     # download_all_core_packages()
     setup_gnome_extensions()
     extract_all_snapshot()

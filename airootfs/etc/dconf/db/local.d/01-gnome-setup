@@ -1,5 +1,5 @@
 [org/gnome/shell]
-enabled-extensions=['blur-my-shell@aunetx', 'dash-to-panel@jderose9.github.com', 'tilingshell@ferrarodomenico.com', 'gtk4-ding@smedius.gitlab.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'arcmenu@arcmenu.com']
+enabled-extensions=['bakeryos@bakeryos.smtdfc.space', 'blur-my-shell@aunetx', 'dash-to-panel@jderose9.github.com', 'tilingshell@ferrarodomenico.com', 'gtk4-ding@smedius.gitlab.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'arcmenu@arcmenu.com']
 
 [org/gnome/desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
@@ -91,7 +91,7 @@ window-preview-title-position='TOP'
 [org/gnome/shell/extensions/arcmenu]
 dash-to-panel-standalone=true
 menu-button-icon='resource:///org/gnome/shell/extensions/arcmenu/icons/scalable/actions/icon-app-launcher-symbolic.svg'
-menu-layout='AZ'
+menu-layout='windows'
 multi-monitor=true
 override-menu-theme=false
 pinned-apps=[{'id': 'org.gnome.Nautilus.desktop'}, {'id': 'org.gnome.Console.desktop'}]
@@ -102,3 +102,7 @@ power-options=[(0, true), (1, true), (2, true), (3, true), (4, true), (5, true),
 prefs-visible-page=0
 search-entry-border-radius=(true, 25)
 update-notifier-project-version=73
+
+[org/gnome/shell/extensions/gtk4-ding]
+icon-size='tiny'
+show-desktop-widgets=false

@@ -1,0 +1,42 @@
+name: BakeryOS Linux CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  build-on-arch:
+    runs-on: ubuntu-latest
+
+    container:
+      image: archlinux:base-devel
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize Pacman keyring and update system
+        run: |
+          pacman-key --init
+          pacman-key --populate archlinux
+          pacman -Syu --noconfirm
+
+      - name: Install Python and essential tools
+        run: |
+          pacman -S --noconfirm python python-pip git base-devel
+
+      - name: Verify Environment
+        run: |
+          uname -a
+          cat /etc/arch-release
+          gcc --version
+
+      - name: Prepare
+        run: |
+          python ./scripts/python/main.py prepare
+
+      - name: Prepare
+        run: |
+          python ./scripts/python/main.py build

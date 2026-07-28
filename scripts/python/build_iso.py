@@ -18,4 +18,4 @@ def build_iso() -> None:
         "-o",
         str(out_dir),
         str(project_dir)
-    ])
+    ], None, build_log_dir / "iso.log")

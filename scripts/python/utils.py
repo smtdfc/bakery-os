@@ -3,18 +3,16 @@ import sys
 import os
 
 
-def run_command_and_stream(command: str | list[str], cwd: str | None = None) -> int:
+def run_command_and_stream(command: str | list[str], cwd: str | None = None,  log_file: str | Path | None = None, ) -> int:
     print("--------------------------------------------------")
 
+    log_handle = open(log_file, "a", encoding="utf-8") if log_file else None
+
     try:
-        # Launch the subprocess
-        # stdout=subprocess.PIPE allows us to capture the standard output
-        # stderr=subprocess.STDOUT redirects error stream into the stdout stream so we catch both
         process = subprocess.Popen(
             command,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
-            # Automatically decodes bytes to string (no need for .decode())
             text=True,
             shell=True if isinstance(command, str) else False,
             cwd=cwd
@@ -24,11 +22,17 @@ def run_command_and_stream(command: str | list[str], cwd: str | None = None) -> 
             sys.stdout.write(chunk)
             sys.stdout.flush()
 
+            if log_handle:
+                log_handle.write(chunk)
+
         return process.wait()
 
     except Exception as e:
         print(f"An error occurred while executing command: {e}")
         return -1
+    finally:
+        if log_handle:
+            log_handle.close()
 
 
 def directory_has_files(dir_path):
