@@ -25,7 +25,7 @@ jobs:
 
       - name: Install Python and essential tools
         run: |
-          pacman -S --noconfirm python python-pip git base-devel
+          pacman -S --noconfirm python python-pip git base-devel squashfs-tools dosfstools mtools
 
       - name: Verify Environment
         run: |
